@@ -1,7 +1,5 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-.idea/
-venvdjango/
 *.py[cod]
 *$py.class
 
