@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Company, Skill, Course, Project
+from .models import Company, Skill, Course, Project, WorkExperience
+
 class RegisterSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
@@ -44,3 +45,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = '__all__'
 
+class WorkExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= WorkExperience    
+        fields = '__all__'

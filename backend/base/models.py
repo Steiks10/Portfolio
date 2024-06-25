@@ -11,7 +11,7 @@ ROLE_CHOICES = [
 ]
 
 TYPE_WORK = [
-  ('presencial', 'Presencial'),
+  ('facetoface', 'Presencial'),
   ('hybrid', 'Hybrid'), 
   ('remote', 'Remote')
 ]
