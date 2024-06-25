@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Company, Skill, Course
+from .models import Company, Skill, Course, Project, WorkExperience
+
 class RegisterSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
@@ -34,10 +35,17 @@ class SkillSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     skills = SkillSerializer(many=True, read_only=True)
-
     class Meta:
         model = Course
         fields = '__all__'
 
-    # def validate(self,data):
-    #     validated_data
+class ProjectSerializer(serializers.ModelSerializer):
+    skills = SkillSerializer(many=True, read_only=True)
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+class WorkExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= WorkExperience    
+        fields = '__all__'
