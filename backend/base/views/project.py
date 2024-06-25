@@ -19,6 +19,13 @@ def project_general(request):
             serializer.save()
             return Response({'status': 201, 'data': serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors)
+    elif request.method == 'PUT':
+        data = request.data
+        serializer = ProjectSerializer(data = data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 201, 'data': serializer.data}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors)
 
 @api_view(['GET','PUT', 'PATCH', 'DELETE'])
 def project_detail(request, pk=None):
@@ -27,8 +34,19 @@ def project_detail(request, pk=None):
         serializer = ProjectSerializer(project, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'status': 201, 'data': serializer.data}, status=status.HTTP_201_CREATED)
+            return Response({'status': 200, 'data': serializer.data}, status=status.HTTP_200_OK)
         return Response(serializer.errors)
+    if request.method == 'PATCH':
+        data = request.data
+        serializer = ProjectSerializer(project, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 200, 'data': serializer.data}, status=status.HTTP_200_OK)
+        return Response(serializer.errors)
+    if request.method == 'DELETE':
+        project.delete()
+        return Response({'status': 204, 'data': None}, status=status.HTTP_204_NO_CONTENT)
+
     # elif request.method == 'PUT':
     #     data = request.data
     #     serializer = ProjectSerializer(obj, data=data)

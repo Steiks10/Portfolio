@@ -8,7 +8,6 @@ from base.views.skill import SkillViewSet
 from base.views.course import CourseViewSet
 from base.views.project import project_general, project_detail
 
-
 router = DefaultRouter()
 router.register(r'company', CompanyViewSet, basename='company')
 router.register(r'skill', SkillViewSet, basename='skill')
@@ -18,12 +17,7 @@ urlpatterns = [
     path('register/', RegisterAPI.as_view()),
     path('login/', LoginAPI.as_view()),
     path('project/', project_general),
-    path('project/<int:pk>/', project_detail),
-    # path('index/', index),
-    # path('', include(router.urls)),
-    # path('person/', people),
-    # path('login/', login),
-    # path('persons/', PersonAPI.as_view())
+    path('project/<int:pk>/', project_detail)
 ]
 
 urlpatterns += router.urls
