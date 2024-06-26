@@ -22,6 +22,7 @@ class RegisterAPI(APIView):
         return Response({'status': True, 'message': 'user created'}, status.HTTP_201_CREATED)
 
 
+
 class LoginAPI(APIView):
     def post(self, request):
         data = request.data
